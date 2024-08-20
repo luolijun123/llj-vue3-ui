@@ -10,7 +10,6 @@ import dts from 'vite-plugin-dts'
 
 export default defineConfig(({ mode }) => {
   const { VITE_BUILD_MODE } = loadEnv(mode, process.cwd())
-  console.log(VITE_BUILD_MODE)
   return VITE_BUILD_MODE === 'lib'
     ? {
         plugins: [
@@ -97,13 +96,14 @@ export default defineConfig(({ mode }) => {
             '@': fileURLToPath(new URL('./src', import.meta.url))
           }
         },
+        publicDir: 'public',
         build: {
           // 设置最终构建的浏览器兼容目标
           target: 'es2015',
           // 构建后是否生成source map文件
           sourcemap: false,
           // 指定输出路径  默认：dist
-          outDir: 'dist',
+          outDir: '.',
           // 指定生成静态资源的存放路径（相对于 build.outDir） 默认：assets
           assetsDir: 'static',
 

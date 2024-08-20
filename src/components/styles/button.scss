@@ -1,0 +1,208 @@
+@use 'sass:math';
+@use 'sass:map';
+
+@import './variable.scss';
+
+@function jc($list...) {
+  @return joinClassName('button', $list...);
+}
+
+$colors: () !default;
+$colors: map.deep-merge(
+  $colors,
+  (
+    'primary': (
+      'text-color': #09f,
+      'border-color': #b3d8ff,
+      'bgc': #09f,
+      'light-bgc': #ecf5ff,
+      'gradient': linear-gradient(-90deg, #39d7ff 0%, #009cff 100%)
+    ),
+    'success': (
+      'text-color': #32b432,
+      'border-color': #c2e7b0,
+      'bgc': #32b432,
+      'light-bgc': #f0f9eb,
+      'gradient': linear-gradient(90deg, #32b332 0%, #68d468 100%)
+    ),
+    'warning': (
+      'text-color': #f60,
+      'border-color': #f5dab1,
+      'bgc': #f60,
+      'light-bgc': #fdf6ec,
+      'gradient': linear-gradient(-90deg, #ffb21f 0%, #ff7e00 100%)
+    ),
+    'danger': (
+      'text-color': #ec5260,
+      'border-color': #fbc4c4,
+      'bgc': #ec5260,
+      'light-bgc': #fef0f0,
+      'gradient': linear-gradient(-90deg, #ff7885 0%, #ec5260 100%)
+    ),
+    'info': (
+      'text-color': #333,
+      'border-color': #e1e1e1,
+      'bgc': #999,
+      'light-bgc': #f5f5f5,
+      'gradient': linear-gradient(90deg, #999 0%, #ccc 100%)
+    )
+  )
+);
+$types: primary, success, warning, danger, info;
+$bgtypes: transparent, light;
+// 按钮类型
+@mixin button-type($type, $bgtype: '') {
+  &.#{jc(type, $type)} {
+    color: #fff;
+    background-color: map.get($colors, $type, 'bgc');
+    border-color: map.get($colors, $type, 'bgc');
+    // 背景样式
+    &.#{jc(bgtype, $bgtype)} {
+      color: map.get($colors, $type, 'text-color');
+      border-color: map.get($colors, $type, 'border-color');
+      @if $bgtype == transparent {
+        background-color: #fff;
+      } @else {
+        background-color: map.get($colors, $type, $bgtype + '-bgc');
+      }
+    }
+    // 渐变
+    &.#{jc(gradient)} {
+      background-image: map.get($colors, $type, 'gradient');
+      color: #fff;
+      border: none;
+    }
+  }
+}
+// 禁用
+@mixin button-disabled() {
+  &.#{jc(disabled)} {
+    & {
+      cursor: not-allowed;
+      color: #fff;
+      background-color: #ccc;
+      border-color: #e5e5e5;
+    }
+    &:hover {
+      opacity: 1;
+    }
+    &:active::after {
+      display: none;
+    }
+
+    @each $bgtype in $bgtypes {
+      &.#{jc(bgtype, $bgtype)} {
+        color: #999;
+        border-color: #e5e5e5;
+        @if $bgtype == transparent {
+          background-color: #fff;
+        } @else {
+          background-color: #f9f9f9;
+        }
+      }
+    }
+  }
+}
+
+$sizes: (
+  'default': (
+    'height': 30px,
+    'padding': 0 20px,
+    'font-size': 14px
+  ),
+
+  'large': (
+    'height': 36px,
+    'padding': 0 28px,
+    'font-size': 16px
+  ),
+  'small': (
+    'height': 26px,
+    'padding': 0 16px,
+    'font-size': 14px
+  ),
+  'mini': (
+    'height': 22px,
+    'padding': 0 12px,
+    'font-size': 12px
+  )
+);
+// 按钮尺寸
+@mixin button-size() {
+  & {
+    height: map.get($sizes, 'default', 'height');
+    padding: map.get($sizes, 'default', 'padding');
+    font-size: map.get($sizes, 'default', 'font-size');
+  }
+  &.#{jc(radius)} {
+    border-radius: calc(map.get($sizes, 'default', 'height') / 2);
+  }
+  @each $size in large, small, mini {
+    &.#{jc(size, $size)} {
+      height: map.get($sizes, $size, 'height');
+      padding: map.get($sizes, $size, 'padding');
+      font-size: map.get($sizes, $size, 'font-size');
+      &.#{jc(radius)} {
+        border-radius: calc(map.get($sizes, $size, 'height') / 2);
+      }
+    }
+  }
+}
+
+.#{jc(root)} {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0 22px;
+  color: #333;
+  border: 1px solid #e1e1e1;
+  border-radius: 3px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #fff;
+  height: 30px;
+  width: fit-content;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  // 点击时叠加灰色背景
+  &:active {
+    position: relative;
+    opacity: 1;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      border-radius: inherit;
+      background-color: rgba($color: #000000, $alpha: 0.2);
+    }
+  }
+
+  > span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  @each $type in $types {
+    @each $bgtype in $bgtypes {
+      @include button-type($type, $bgtype);
+    }
+  }
+
+  @include button-disabled();
+
+  @include button-size();
+
+  & + & {
+    margin-left: 12px;
+  }
+}

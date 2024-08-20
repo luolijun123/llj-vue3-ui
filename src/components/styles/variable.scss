@@ -1,0 +1,45 @@
+$namespace: 'l' !default;
+$common-separator: '-' !default;
+$satte-prefix: 'is-' !default;
+
+// joinClassName(['button', 'element', 'modifier']) => 'l-button-element-modifier'
+@function joinClassName($list...) {
+  $name: $namespace;
+  @each $item in $list {
+    $name: $name + $common-separator + $item;
+  }
+
+  @return $name;
+}
+
+$colors: (
+  'white': #fff,
+  'black': #333,
+  'gray': #999,
+  'light': #999,
+  'primary': (
+    'base': #09f,
+    'border-color': #b3d8ff,
+    'bg-color': #ecf5ff
+  ),
+  'success': (
+    'base': #32b432,
+    'border-color': #c2e7b0,
+    'bg-color': #f0f9eb
+  ),
+  'warning': (
+    'base': #f60,
+    'border-color': #f5dab1,
+    'bg-color': #fdf6ec
+  ),
+  'danger': (
+    'base': #ec5260,
+    'border-color': #fbc4c4,
+    'bg-color': #fef0f0
+  ),
+  'info': (
+    'base': #333,
+    'border-color': #e1e1e1,
+    'bg-color': #f5f5f5
+  )
+);

@@ -1,0 +1,82 @@
+@use 'sass:math';
+@use 'sass:map';
+
+@import './variable.scss';
+
+@function jc($list...) {
+  @return joinClassName('message', $list...);
+}
+
+.#{jc(root)} {
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  box-sizing: border-box;
+  border-radius: 3px;
+  box-shadow: 0 0 16px #00000029;
+  padding: 15px 20px;
+  display: flex;
+  align-items: flex-start;
+  position: fixed;
+  left: 50%;
+  top: 100px;
+  transform: translateX(-50%);
+  transition:
+    opacity 0.4s,
+    transform 0.4s,
+    top 0.4s;
+  background-color: #fff;
+  line-height: 18px;
+
+  .#{jc(icon)} {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+  }
+
+  .#{jc(content)} {
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    line-height: 18px;
+    color: #333333e6;
+    max-width: 500px;
+  }
+
+  .#{jc(close)} {
+    display: flex;
+    align-items: center;
+    height: 18px;
+    margin-left: 15px;
+    padding: 0 5px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .#{jc(loading, img)} {
+    animation: loading-ani 1s infinite linear;
+  }
+
+  &.#{jc(isclose)} {
+    padding-right: 15px;
+  }
+
+  &.#{jc(placement, right)} {
+    right: 16px;
+    left: auto;
+    transform: translateX(0);
+  }
+}
+
+.#{jc(fade)}-enter-from,
+.#{jc(fade)}-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}
+
+@keyframes loading-ani {
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -23,7 +23,7 @@
       <div class="Box">
         <span>// src/main.ts</span>
         <div>import LUI from 'llj-vue3-ui';</div>
-        <div>import 'llj-vue3-ui/css';</div>
+        <div>import 'llj-vue3-ui/style';</div>
         <div>app.use(LUI);</div>
       </div>
     </div>

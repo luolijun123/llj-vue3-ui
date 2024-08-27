@@ -12,10 +12,12 @@ const _hoisted_1 = ["innerHTML"];
 const _sfc_main = /* @__PURE__ */ defineComponent({
   __name: "message",
   props: {
+    // 是否显示 - 组件引用时使用
     modelValue: {
       default: false,
       type: Boolean
     },
+    // 颜色类型
     type: {
       type: String,
       default: "primary",
@@ -23,6 +25,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         return messageTypes.includes(value);
       }
     },
+    // 显示位置
     placement: {
       type: String,
       default: "center",
@@ -30,23 +33,27 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
         return ["center", "right"].includes(value);
       }
     },
+    // 文本内容
     message: {
       type: String,
       default: ""
     },
+    // 停留时间
     duration: {
       type: Number,
       default: 3e3
     },
+    // 是否显示关闭
     closeable: {
       type: Boolean,
       default: false
     },
-    // js调用
+    // js调用唯一值 不用传
     id: {
       type: String,
       default: ""
     },
+    // 层叠值
     zindex: {
       type: Number,
       default: 1e4
@@ -60,7 +67,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       type: Boolean,
       default: false
     },
-    // 是否同一时间只显示一个
+    // 同一时间是否只显示一个
     isSingle: {
       type: Boolean,
       default: true

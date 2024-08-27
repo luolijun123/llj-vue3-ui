@@ -1,6 +1,6 @@
-# llj-vue3-ui [文档](https://luolijun123.github.io/lljui-pages)
+# llj-vue3-ui
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue3 component library [文档地址](https://luolijun123.github.io/lljui-pages/)
 
 ## Recommended IDE Setup
 

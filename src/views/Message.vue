@@ -2,6 +2,7 @@
   <MainWrap :list="[
     { id: 'Messsage-Type', label: '组件使用' },
     { id: 'Messsage-Fn', label: '函数调用' },
+    { id: 'Messsage-Attr', label: '属性' },
   ]">
     <div class="Block" id="Messsage-Type">
       <p class="Title">组件使用</p>
@@ -167,6 +168,69 @@
             onShowFn({ type: 'danger', message: '操作严重后果！' })
           }">操作严重后果</LButton>
         </div>
+      </CodePreview>
+    </div>
+    <div class="Block" id="Messsage-Attr">
+      <p class="Title">Message属性</p>
+      <CodePreview :codes="`    const props = defineProps({
+        // 是否显示 - 组件引用时使用
+        modelValue: {
+          default: false,
+          type: Boolean
+        },
+        // 样式类型
+        type: {
+          type: String,
+          default: 'primary',
+          validator: function (value: string) {
+            return ['question', 'warning', 'success', 'info', 'loading', 'danger'].includes(value)
+          },
+        },
+        // 显示位置
+        placement: {
+          type: String,
+          default: 'center',
+          validator: function (value: string) {
+            return ['center', 'right'].includes(value)
+          },
+        },
+        // 文本内容
+        message: {
+          type: String,
+          default: '',
+        },
+        // 停留时间
+        duration: {
+          type: Number,
+          default: 3000,
+        },
+        // 是否显示关闭
+        closeable: {
+          type: Boolean,
+          default: false,
+        },
+        // 层叠值
+        zindex: {
+          type: Number,
+          default: 10000,
+        },
+        offset: {
+          type: Number,
+          default: 16,
+        },
+        // 是否插入html字符串
+        dangerouslyUseHTMLString: {
+          type: Boolean,
+          default: false,
+        },
+        // 同一时间是否只显示一个
+        isSingle: {
+          type: Boolean,
+          default: true,
+        },
+        onClose: Function,
+        onDestroy: Function,
+      })`">
       </CodePreview>
     </div>
     <LMessage v-model="messageProps.show" :duration="messageProps.duration" :type="messageProps.type"

@@ -58,7 +58,6 @@ const createMessage = (options) => {
   return instance2;
 };
 const message = (options = {}) => {
-  console.log(options, "---");
   const instance$1 = createMessage(options);
   instance.instances.push(instance$1);
   return instance$1.handler;

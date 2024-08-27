@@ -3,7 +3,7 @@
     <div class="Block" id="Button-Desc">
       <p class="Title">简介</p>
       <span class="Desc">
-        一个vue3组件库（mini）
+        一个vue3简单的组件库
       </span>
     </div>
     <div class="Block" id="Button-Install">

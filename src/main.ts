@@ -9,7 +9,7 @@ import router from './router'
 import LUI from 'llj-vue3-ui'
 import 'llj-vue3-ui/style'
 // import LUI from '../node_modules/llj-vue3-ui'
-// import '../node_modules/llj-vue3-ui/lljui/css'
+// import '../node_modules/llj-vue3-ui/lljui/style'
 
 const app = createApp(App)
 

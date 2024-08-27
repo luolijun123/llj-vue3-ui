@@ -10,7 +10,6 @@ import dts from 'vite-plugin-dts'
 
 export default defineConfig(({ mode }) => {
   const { VITE_BUILD_MODE } = loadEnv(mode, process.cwd())
-  console.log(VITE_BUILD_MODE, 'mode')
   return VITE_BUILD_MODE === 'lib'
     ? {
         plugins: [
@@ -28,7 +27,7 @@ export default defineConfig(({ mode }) => {
           }),
           dts({
             entryRoot: './src/components',
-            outDir: ['./lljui/es', './lljui/lib'],
+            outDir: ['./dist/es', './dist/lib'],
             tsconfigPath: './tsconfig.json'
           })
         ],

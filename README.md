@@ -1,6 +1,6 @@
 # llj-vue3-ui
 
-A Vue3 component library [文档地址](https://luolijun123.github.io/lljui-pages/)
+A Vue3 component library ([文档地址](https://luolijun123.github.io/lljui-pages/))
 
 ## Recommended IDE Setup
 

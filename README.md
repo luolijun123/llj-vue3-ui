@@ -1,4 +1,4 @@
-# llj-vue3-ui
+# llj-vue3-ui [文档](https://luolijun123.github.io/lljui-pages)
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -36,4 +36,10 @@ npm run build
 
 ```sh
 npm run lint
+```
+
+### lib 打包
+
+```sh
+npm run build-lib
 ```

@@ -10,12 +10,14 @@ import dts from 'vite-plugin-dts'
 
 export default defineConfig(({ mode }) => {
   const { VITE_BUILD_MODE } = loadEnv(mode, process.cwd())
+  console.log(VITE_BUILD_MODE, 'mode')
   return VITE_BUILD_MODE === 'lib'
     ? {
         plugins: [
           vue(),
           AutoImport({
             imports: ['vue', 'vue-router'],
+            ignore: ['h'],
             dts: true
           }),
           prismjsPlugin({
@@ -44,12 +46,6 @@ export default defineConfig(({ mode }) => {
             // 忽略打包vue文件
             external: ['vue'],
             input: ['./src/components/index.ts'],
-            // output: {
-            //   globals: {
-            //     vue: 'Vue'
-            //   },
-            //   dir: 'dist'
-            // }
             output: [
               {
                 format: 'es',
@@ -57,7 +53,7 @@ export default defineConfig(({ mode }) => {
                 // 打包目录和目录对应
                 preserveModules: true,
                 exports: 'named',
-                dir: './lljui/es'
+                dir: './dist/es'
               },
               {
                 format: 'cjs',
@@ -65,15 +61,12 @@ export default defineConfig(({ mode }) => {
                 // 打包目录和目录对应
                 preserveModules: true,
                 exports: 'named',
-                dir: './lljui/lib'
+                dir: './dist/lib'
               }
             ]
           },
           lib: {
             entry: './src/components/index.ts'
-            // name: 'lljui',
-            // fileName: 'lljui',
-            // formats: ['es', 'umd', 'cjs']
           }
         }
       }
@@ -82,6 +75,7 @@ export default defineConfig(({ mode }) => {
           vue(),
           AutoImport({
             imports: ['vue', 'vue-router'],
+            ignore: ['h'],
             dts: true
           }),
           prismjsPlugin({
@@ -96,14 +90,14 @@ export default defineConfig(({ mode }) => {
             '@': fileURLToPath(new URL('./src', import.meta.url))
           }
         },
-        publicDir: 'public',
+        base: './',
         build: {
           // 设置最终构建的浏览器兼容目标
           target: 'es2015',
           // 构建后是否生成source map文件
           sourcemap: false,
           // 指定输出路径  默认：dist
-          outDir: '.',
+          outDir: '../WebPages/lljui',
           // 指定生成静态资源的存放路径（相对于 build.outDir） 默认：assets
           assetsDir: 'static',
 

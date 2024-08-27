@@ -1,20 +1,20 @@
 {
   "name": "llj-vue3-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "author": "luolijun",
   "type": "module",
   "files": [
-    "lljui"
+    "dist"
   ],
-  "main": "./lljui/lib/index.js",
-  "module": "./lljui/es/index.mjs",
+  "main": "./dist/lib/index.js",
+  "module": "./dist/es/index.mjs",
   "exports": {
-    "./lljui/style.css": "./lljui/lib/style.css",
-    "./css": "./lljui/lib/style.css",
+    "./dist/style.css": "./dist/lib/style.css",
+    "./style": "./dist/lib/style.css",
     ".": {
-      "import": "./lljui/es/index.mjs",
-      "require": "./lljui/lib/index.js"
+      "import": "./dist/es/index.mjs",
+      "require": "./dist/lib/index.js"
     }
   },
   "scripts": {
@@ -27,7 +27,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "llj-vue3-ui": "^0.0.1",
+    "llj-vue3-ui": "0.0.2",
     "nprogress": "^0.2.0",
     "prismjs": "^1.29.0",
     "vue": "^3.4.21",

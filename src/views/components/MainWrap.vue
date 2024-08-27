@@ -168,6 +168,24 @@ onUnmounted(() => {
     .Desc {
       display: inline-flex;
       padding-bottom: 8px;
+      color: #666;
+    }
+
+    .Box {
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 20px 32px;
+      max-width: 80%;
+
+      >div {
+        padding-bottom: 8px;
+      }
+
+      >span {
+        display: inline-block;
+        color: #999;
+        padding-bottom: 10px;
+      }
     }
   }
 

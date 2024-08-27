@@ -114,7 +114,7 @@
       </span>
       <CodePreview :codes="`    <!-- script -->
     <script setup>
-      import { useLMessage } from '@/components'
+      import { useLMessage } from 'llj-vue3-ui'
 
       const onShowFn = (obj) => {
         useLMessage({

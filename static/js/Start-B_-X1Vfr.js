@@ -1,1 +1,0 @@
-import{M as t}from"./MainWrap-BooNQ17e.js";import{o as r,v as a,z as e,I as o}from"./chunks/@vue-ClYERPLE.js";import"./index-Cqb7IHIv.js";import"./chunks/vue-router-B6zIzvyw.js";import"./chunks/nprogress-BoRHhhMm.js";const u={__name:"Start",setup(p){return(s,c)=>(r(),a(t,null,{default:e(()=>[o(" Start ")]),_:1}))}};export{u as default};

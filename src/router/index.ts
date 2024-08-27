@@ -14,10 +14,12 @@ NProgress.configure({
 
 const routes = [
   {
+    path: '/',
+    redirect: '/Home/Start'
+  },
+  {
     path: '/Home',
-    name: 'Home',
     meta: { title: '简介' },
-    redirect: '/Home/Start',
     children: [
       {
         path: 'Start',
@@ -29,8 +31,6 @@ const routes = [
   },
   {
     path: '/Base',
-    name: 'Base',
-    redirect: '/Base/Button',
     meta: { title: '基础组件' },
     children: [
       {
@@ -47,7 +47,7 @@ const routes = [
       }
     ]
   },
-  { path: '/:patchAll(.*)*', redirect: '/Start' }
+  { path: '/:pathMatch(.*)*', redirect: { name: 'Start' } }
 ]
 
 const getRouteNav = (routes: RouteItem[], parentPath?: string) => {
@@ -75,7 +75,7 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   NProgress.start()
-  // console.log('to-name:', to.name, ';from-name:', from.name);
+  console.log('to-name:', to.name, ';from-name:', from.name)
 })
 
 router.afterEach(() => {
